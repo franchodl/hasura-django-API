@@ -1,0 +1,11 @@
+table:
+  name: production_planning_country
+  schema: public
+array_relationships:
+  - name: production_planning_addresses
+    using:
+      foreign_key_constraint_on:
+        column: country_id
+        table:
+          name: production_planning_address
+          schema: public

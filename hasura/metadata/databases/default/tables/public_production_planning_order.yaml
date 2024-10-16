@@ -1,0 +1,18 @@
+table:
+  name: production_planning_order
+  schema: public
+object_relationships:
+  - name: production_planning_clientoffoundry
+    using:
+      foreign_key_constraint_on: client_of_foundry_id
+  - name: production_planning_model
+    using:
+      foreign_key_constraint_on: model_id
+array_relationships:
+  - name: production_planning_ordersincastingboxes
+    using:
+      foreign_key_constraint_on:
+        column: order_id
+        table:
+          name: production_planning_ordersincastingbox
+          schema: public

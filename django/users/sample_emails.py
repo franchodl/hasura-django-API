@@ -2,7 +2,7 @@ from rest_framework import serializers, status, permissions, generics, views
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User 
-from api.models import Profile
+from users.models import Profile
 from django.db import connection
 from django.http import HttpResponse
 from email.message import EmailMessage
@@ -80,7 +80,7 @@ def reset_password_email(request):
 
     if ( reset_sent_status != True ):
         # ------- BOILERPLATE PASSWORD RESET EMAIL : Uncomment this section for emails -------
-        # What happens? 1 Embed token in URL link > 2 pass token as querystring to client > 3 client calls back to REST API w/ token, email, new password ( /api/reset_password/confirm/ )
+        # What happens? 1 Embed token in URL link > 2 pass token as querystring to cl/api/ient > 3 client calls back to REST API w/ token, email, new password ( /api/reset_password/confirm/ )
         # # Email Creds
         # email_smtp_from = 'YourFrom:Email'  
         # email_smtp_from_name = 'YourName'

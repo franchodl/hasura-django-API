@@ -1,0 +1,25 @@
+table:
+  name: production_planning_foundry
+  schema: public
+object_relationships:
+  - name: production_planning_address
+    using:
+      foreign_key_constraint_on: address_id
+  - name: production_planning_foundrygroup
+    using:
+      foreign_key_constraint_on: foundry_group_id
+array_relationships:
+  - name: production_planning_clientoffoundries
+    using:
+      foreign_key_constraint_on:
+        column: foundry_id
+        table:
+          name: production_planning_clientoffoundry
+          schema: public
+  - name: production_planning_material_foundries
+    using:
+      foreign_key_constraint_on:
+        column: foundry_id
+        table:
+          name: production_planning_material_foundry
+          schema: public

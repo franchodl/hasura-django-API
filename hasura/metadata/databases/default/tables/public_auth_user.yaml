@@ -2,79 +2,87 @@ table:
   name: auth_user
   schema: public
 object_relationships:
-- name: api_profile
-  using:
-    foreign_key_constraint_on:
-      column: user_id
-      table:
-        name: api_profile
-        schema: public
+  - name: users_profile
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: users_profile
+          schema: public
 array_relationships:
-- name: demo_realtimes
-  using:
-    foreign_key_constraint_on:
-      column: created_by
-      table:
-        name: demo_realtime
-        schema: public
-- name: django_rest_passwordreset_resetpasswordtokens
-  using:
-    foreign_key_constraint_on:
-      column: user_id
-      table:
-        name: django_rest_passwordreset_resetpasswordtoken
-        schema: public
-select_permissions:
-- permission:
-    columns:
-    - date_joined
-    - email
-    - id
-    - is_active
-    - username
-    filter: {}
-  role: manager
-- permission:
-    columns:
-    - date_joined
-    - email
-    - id
-    - is_active
-    - username
-    filter: {}
-  role: user
-update_permissions:
-- permission:
-    columns:
-    - date_joined
-    - email
-    - id
-    - is_active
-    - username
-    filter: {}
-  role: manager
-- permission:
-    columns:
-    - date_joined
-    - email
-    - id
-    - is_active
-    - username
-    filter:
-      id:
-        _eq: X-Hasura-User-Id
-  role: user
+  - name: demo_realtimes
+    using:
+      foreign_key_constraint_on:
+        column: created_by
+        table:
+          name: demo_realtime
+          schema: public
+  - name: django_rest_passwordreset_resetpasswordtokens
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: django_rest_passwordreset_resetpasswordtoken
+          schema: public
 insert_permissions:
-- permission:
-    columns:
-    - date_joined
-    - email
-    - id
-    - is_active
-    - username
-    check: {}
-  role: manager
+  - role: manager
+    permission:
+      check: {}
+      columns:
+        - date_joined
+        - email
+        - id
+        - is_active
+        - username
+select_permissions:
+  - role: manager
+    permission:
+      columns:
+        - date_joined
+        - email
+        - id
+        - is_active
+        - username
+      filter: {}
+  - role: user
+    permission:
+      columns:
+        - is_active
+        - is_staff
+        - is_superuser
+        - email
+        - first_name
+        - last_name
+        - password
+        - username
+        - id
+        - date_joined
+        - last_login
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: manager
+    permission:
+      columns:
+        - date_joined
+        - email
+        - id
+        - is_active
+        - username
+      filter: {}
+      check: null
+  - role: user
+    permission:
+      columns:
+        - email
+        - first_name
+        - last_name
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
 delete_permissions:
-- permission:
-    filter: {}
-  role: manager
+  - role: manager
+    permission:
+      filter: {}

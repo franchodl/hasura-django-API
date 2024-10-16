@@ -1,0 +1,25 @@
+table:
+  name: production_planning_material
+  schema: public
+array_relationships:
+  - name: productionPlanningModelsByPlateTypeId
+    using:
+      foreign_key_constraint_on:
+        column: plate_type_id
+        table:
+          name: production_planning_model
+          schema: public
+  - name: production_planning_material_foundries
+    using:
+      foreign_key_constraint_on:
+        column: material_id
+        table:
+          name: production_planning_material_foundry
+          schema: public
+  - name: production_planning_models
+    using:
+      foreign_key_constraint_on:
+        column: material_id
+        table:
+          name: production_planning_model
+          schema: public

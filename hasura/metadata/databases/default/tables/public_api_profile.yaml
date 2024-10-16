@@ -14,7 +14,6 @@ select_permissions:
     - registration_sent
     - role_id
     - user_id
-    - uuid
     filter: {}
   role: manager
 - permission:
@@ -22,7 +21,6 @@ select_permissions:
     - registration_sent
     - role_id
     - user_id
-    - uuid
     filter:
       auth_user:
         id:

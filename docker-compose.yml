@@ -75,15 +75,3 @@ services:
       # -- UPDATE SECRET
       # Any $ in your secret key needs another $ for interpolation. > ex. `...4v$0n^c...` becomes `...4v$$0n^c...` (read readme.md)
       HASURA_GRAPHQL_JWT_SECRET: '{ "type": "HS256", "key": "T2uy8pg3OjW26TdngnPA3LjuPlthW8AH6xIOBXu9oFs" }'
-
-  # client:
-  #   image: node:16
-  #   container_name: hds-client
-  #   restart: always
-  #   command: bash -c "npm install && HOST=0.0.0.0 npm run dev"
-  #   ports:
-  #     - "127.0.0.1:35729:35729" # Live Reload
-  #     - "127.0.0.1:8088:8088"
-  #   working_dir: /home/node/apps/app
-  #   volumes:
-  #     - ./client:/home/node/apps/app

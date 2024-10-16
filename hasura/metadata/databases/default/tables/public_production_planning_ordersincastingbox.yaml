@@ -1,0 +1,10 @@
+table:
+  name: production_planning_ordersincastingbox
+  schema: public
+object_relationships:
+  - name: production_planning_castingbox
+    using:
+      foreign_key_constraint_on: casting_box_id
+  - name: production_planning_order
+    using:
+      foreign_key_constraint_on: order_id

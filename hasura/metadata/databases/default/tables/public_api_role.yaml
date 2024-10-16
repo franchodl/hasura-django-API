@@ -21,14 +21,12 @@ select_permissions:
     columns:
     - id
     - name
-    - uuid
     filter: {}
   role: manager
 - permission:
     columns:
     - id
     - name
-    - uuid
     filter: {}
   role: user
 update_permissions:

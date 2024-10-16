@@ -1,1 +1,57 @@
-[]
+- name: Django backend
+  definition:
+    url: http://hds-django:8000/graphql/
+    timeout_seconds: 60
+    customization: {}
+    forward_client_headers: true
+  permissions:
+    - role: public
+      definition:
+        schema: |
+          schema {
+            query: Query
+            mutation: Mutation
+          }
+          scalar GenericScalar
+          type Mutation {
+            tokenAuth(username: String!, password: String!): ObtainJSONWebToken
+            verifyToken(token: String): Verify
+          }
+          type ObtainJSONWebToken {
+            payload: GenericScalar!
+            refreshExpiresIn: Int!
+            refreshToken: String!
+            token: String!
+          }
+          type Query {
+            hello: String
+          }
+          type Verify {
+            payload: GenericScalar!
+          }
+    - role: user
+      definition:
+        schema: |
+          schema {
+            query: Query
+            mutation: Mutation
+          }
+          scalar GenericScalar
+          scalar Upload
+          type Mutation {
+            refreshToken(refreshToken: String): Refresh
+            uploadExcel(file: Upload!): UploadExcelMutation
+          }
+          type Query {
+            hello: String
+          }
+          type Refresh {
+            payload: GenericScalar!
+            refreshExpiresIn: Int!
+            refreshToken: String!
+            token: String!
+          }
+          type UploadExcelMutation {
+            message: String
+            success: Boolean
+          }
